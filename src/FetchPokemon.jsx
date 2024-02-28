@@ -6,6 +6,24 @@ import Loading from './Loading';
 function FetchPokemon({ data, setData, handleClick}) {
     const [error, setError] = useState(null);
     const url = `https://pokeapi.co/api/v2/pokemon/`
+    // const url2 = 'https://pokeapi.co/api/v2/pokemon?limit=151'
+
+    // useEffect(() => {
+    //   function fetchKantoPokemon(){
+    //     fetch(`${url2}`)
+    //     .then(response => response.json())
+    //     .then(allpokemon => {
+    //       const pokeList = [];
+    //       pokeList.push(allpokemon.results);
+    //       setData(allpokemon.results);
+    //       console.log(pokeList)
+    //       console.log(pokeList[0][15])
+    //       console.log(pokeList[0].url)
+    //     })
+    //   }
+    //   fetchKantoPokemon()
+    // }, [url2, setData])
+
 
     useEffect(() => {
       const fetchData = async () => {
@@ -28,9 +46,8 @@ function FetchPokemon({ data, setData, handleClick}) {
       fetchData()
 
     }, [url, setData])
-    // if (error) return <p>Error: {error}</p>
+    if (error) return <p>Error: {error}</p>
     if (!data) return <Loading />
-    // if (!data) return <p>Loading...</p>
     
   return (
         <div className="pokemon-cards">
@@ -42,7 +59,7 @@ function FetchPokemon({ data, setData, handleClick}) {
             </div>
         </>
           )
-          }
+          } //
         </div>
       );
   }

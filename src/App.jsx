@@ -43,13 +43,6 @@ function App() {
                 if (clicked.length === 20) {
                     setClicked([]);
                 }
-                // if (prevScore === 20) {
-                //     setScore(() => {
-                //         setClicked([]);
-                //         const newScore = 21;
-                //         return newScore
-                //     })
-                // }
                 return newScore
             })
         }
