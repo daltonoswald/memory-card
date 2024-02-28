@@ -40,6 +40,16 @@ function App() {
                 shuffleData();
                 const newScore = prevScore + 1
                 checkHighScore(newScore);
+                if (clicked.length === 20) {
+                    setClicked([]);
+                }
+                // if (prevScore === 20) {
+                //     setScore(() => {
+                //         setClicked([]);
+                //         const newScore = 21;
+                //         return newScore
+                //     })
+                // }
                 return newScore
             })
         }
