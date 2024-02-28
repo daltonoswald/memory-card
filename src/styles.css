@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+
 body {
-    width: 70vw;
+    width: 80vw;
     margin: 0 auto;
     background-image: url(src/assets/lavender-town.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    font-family: 'Pixelify Sans', sans-serif;
 }
 
 .loading {
@@ -32,6 +35,7 @@ body {
     justify-content: space-around;
     margin: 5vh auto;
     font-size: 20px;
+    text-align: center;
 }
 
 .current-score, 
@@ -47,7 +51,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: 50vw;
+    width: 40vw;
     margin: 0 auto;
     gap: 2vw;
 }
@@ -65,5 +69,12 @@ body {
     display: block;
     font-size: 20px;
     padding: 1vh;
-    border-radius: 1rem
+    border-radius: 1rem;
+    font-family: 'Pixelify Sans', sans-serif;
+}
+
+@media (max-width: 800px) {
+    .pokemon-cards {
+        width: 100%;
+    }
 }
