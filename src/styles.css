@@ -1,6 +1,30 @@
-#root {
+body {
     width: 70vw;
     margin: 0 auto;
+    background-image: url(src/assets/lavender-town.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.loading {
+    /* background-image: url(https://cdn.dribbble.com/users/985548/screenshots/3419640/media/f0f2c122dabd324600b70de1d1108cdf.gif); */
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    background-position: center;
+}
+
+.pokeball-img {
+    height: 20vh;
+    display: block;
+    margin: 0 auto;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 .score {
@@ -8,6 +32,15 @@
     justify-content: space-around;
     margin: 5vh auto;
     font-size: 20px;
+}
+
+.current-score, 
+.high-score {
+    background-color: gainsboro;
+    opacity: .9;
+    padding: 2vh;
+    border: .2rem solid rgb(26, 1, 26);
+    border-radius: 1.5rem
 }
 
 .pokemon-cards {
@@ -23,9 +56,14 @@
     background-image: url(/src/assets/PokeBox.png);
     background-repeat: no-repeat;
     background-size: cover;
+    border: .2rem solid rgb(26, 1, 26);
+    border-radius: 1.5rem
 }
 
 .reset-button {
     margin: 5vh auto;
     display: block;
+    font-size: 20px;
+    padding: 1vh;
+    border-radius: 1rem
 }

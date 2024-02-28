@@ -28,7 +28,7 @@ function FetchPokemon({ data, setData, handleClick}) {
       fetchData()
 
     }, [url, setData])
-    if (error) return <p>Error: {error}</p>
+    // if (error) return <p>Error: {error}</p>
     if (!data) return <Loading />
     // if (!data) return <p>Loading...</p>
     

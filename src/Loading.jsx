@@ -1,8 +1,10 @@
+import pokeball from '/src/assets/pokeball.png'
+
 export default function Loading() {
     return (
         <>
-            <h1>Catching Pokemon to use for cards...</h1>
-            <p>Please wait</p>
+            <h1 className="loading">Loading...</h1>
+            <img className="pokeball-img" src={pokeball} />
         </>
     )
 }
