@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react'
+import Loading from './Loading';
 
 
 function FetchPokemon({ data, setData, handleClick}) {
@@ -28,15 +29,16 @@ function FetchPokemon({ data, setData, handleClick}) {
 
     }, [url, setData])
     if (error) return <p>Error: {error}</p>
-    if (!data) return <p>Loading...</p>
+    if (!data) return <Loading />
+    // if (!data) return <p>Loading...</p>
     
   return (
         <div className="pokemon-cards">
           {data.map(data => 
           <>
             <div id={data.name} onClick={handleClick} className="card">
-                <div id={data.name} onClick={handleClick}>{data.name}</div>
                 <img id={data.name} src={data.sprites.front_default} />
+                {/* <div id={data.name}>{data.name}</div> */}
             </div>
         </>
           )

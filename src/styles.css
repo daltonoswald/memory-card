@@ -1,7 +1,31 @@
+#root {
+    width: 70vw;
+    margin: 0 auto;
+}
+
+.score {
+    display: flex;
+    justify-content: space-around;
+    margin: 5vh auto;
+    font-size: 20px;
+}
+
 .pokemon-cards {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     width: 50vw;
     margin: 0 auto;
     gap: 2vw;
+}
+
+.card {
+    background-image: url(/src/assets/PokeBox.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.reset-button {
+    margin: 5vh auto;
+    display: block;
 }

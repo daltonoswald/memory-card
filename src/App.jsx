@@ -81,12 +81,16 @@ function App() {
     //         </>
     //     )
     // }
+
+
     return (
         <>
-            <div className="score">Your score is {score}.</div>
-            <div className="high-score">Your high score is {highScore}</div>
-            <button className="reset-button" onClick={newGame}>Reset</button>
+            <div className="score">
+                <div className="current-score">Your score is {score}</div>
+                <div className="high-score">Your high score is {highScore}</div>
+            </div>
             <FetchPokemon data={data} setData={setData} clicked={clicked} setClicked={setClicked} handleClick={handleClick} shuffleData={shuffleData}/>
+            <button className="reset-button" onClick={newGame}>Reset</button>
         </>
     )
 }
