@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import FetchPokemon from './FetchPokemon';
+import Difficulty from './Difficulty'
 
 function App() {
     const [clicked, setClicked] = useState([]);
@@ -7,6 +8,8 @@ function App() {
     const [isGameOver, setIsGameOver] = useState(false);
     const [score, setScore] = useState(0);
     const [highScore, setHighScore] = useState(0);
+    const [difficulty, setDifficulty] = useState('');
+    const [activeDifficulty, setActiveDifficulty] = useState(false);
 
     function newGame() {
         setIsGameOver(false);
@@ -15,10 +18,17 @@ function App() {
         shuffleData();
     }
 
+    function handleDifficultyChange(e) {
+        const newDifficulty = e.target.textContent;
+        setDifficulty(newDifficulty);
+        newGame();
+    }
+
     useEffect(() => {
         
         if (new Set(clicked).size !== clicked.length) {
             setIsGameOver(true)
+            newGame();
             // Lines 23-31 are temp solutions to fixing scoring
             // setScore((prevScore) => {
             //     const newScore = prevScore -1
@@ -32,6 +42,7 @@ function App() {
           console.log('game over')
       }
     }, [clicked])
+    
 
     
     function handleScore() {
@@ -88,11 +99,12 @@ function App() {
 
     return (
         <>
-            <div className="score">
-                <div className="current-score">Your score is {score}</div>
-                <div className="high-score">Your high score is {highScore}</div>
-            </div>
-            <FetchPokemon data={data} setData={setData} clicked={clicked} setClicked={setClicked} handleClick={handleClick} shuffleData={shuffleData}/>
+                <div className="heading">
+                    <div className="current-score">Your score is {score}</div>
+                    <Difficulty difficulty={difficulty} handleDifficultyChange={handleDifficultyChange} />
+                    <div className="high-score">Your high score is {highScore}</div>
+                </div>
+            <FetchPokemon data={data} setData={setData} clicked={clicked} setClicked={setClicked} handleClick={handleClick} shuffleData={shuffleData} difficulty={difficulty}/>
             <button className="reset-button" onClick={newGame}>Reset</button>
         </>
     )

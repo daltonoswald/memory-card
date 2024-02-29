@@ -3,33 +3,24 @@ import { useState, useEffect } from 'react'
 import Loading from './Loading';
 
 
-function FetchPokemon({ data, setData, handleClick}) {
+function FetchPokemon({ data, setData, handleClick, difficulty}) {
     const [error, setError] = useState(null);
     const url = `https://pokeapi.co/api/v2/pokemon/`
-    // const url2 = 'https://pokeapi.co/api/v2/pokemon?limit=151'
 
-    // useEffect(() => {
-    //   function fetchKantoPokemon(){
-    //     fetch(`${url2}`)
-    //     .then(response => response.json())
-    //     .then(allpokemon => {
-    //       const pokeList = [];
-    //       pokeList.push(allpokemon.results);
-    //       setData(allpokemon.results);
-    //       console.log(pokeList)
-    //       console.log(pokeList[0][15])
-    //       console.log(pokeList[0].url)
-    //     })
-    //   }
-    //   fetchKantoPokemon()
-    // }, [url2, setData])
-
+    let pokemonCount = 20;
+    if (difficulty === 'Easy') {
+        pokemonCount = 20
+    } else if (difficulty === 'Medium') {
+        pokemonCount = 60
+    } else if (difficulty === 'Hard') {
+        pokemonCount = 151
+    }
 
     useEffect(() => {
       const fetchData = async () => {
         try {
             const pokeList = [];
-            for (let i = 1; i <= 20; i++) {
+            for (let i = 1; i <= pokemonCount; i++) {
             const response = await fetch(`${url}${i}`)
             if (!response.ok) {
               throw new Error(`Failed to fetch ${response.status}`)
@@ -45,7 +36,39 @@ function FetchPokemon({ data, setData, handleClick}) {
       }
       fetchData()
 
-    }, [url, setData])
+    }, [url, setData, pokemonCount])
+
+
+    // useEffect(() => {
+    //   const fetchData = async () => {
+    //     try {
+    //         const pokeList = [];
+    //         for (let i = 1; i <= 20; i++) {
+    //         const response = await fetch(`${url}${i}`)
+    //         if (!response.ok) {
+    //           throw new Error(`Failed to fetch ${response.status}`)
+    //         }
+    //         const result = await response.json()
+    //         pokeList.push(result);
+    //     }
+    //     for (let i = 20; i <= 40; i++) {
+    //       const response = await fetch(`${url}${i}`)
+    //       if (!response.ok) {
+    //         throw new Error(`Failed to fetch ${response.status}`)
+    //       }
+    //       const result = await response.json()
+    //       pokeList.push(result);
+    //   }
+    //       setData(pokeList)
+    //       console.log(pokeList)
+    //     } catch (error) {
+    //       setError(error.message)
+    //     }
+    //   }
+    //   fetchData()
+
+    // }, [url, setData])
+
     if (error) return <p>Error: {error}</p>
     if (!data) return <Loading />
     
@@ -59,7 +82,7 @@ function FetchPokemon({ data, setData, handleClick}) {
             </div>
         </>
           )
-          } //
+          }
         </div>
       );
   }

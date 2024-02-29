@@ -6,6 +6,7 @@ body {
     background-image: url(/src/assets/lavender-town.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
     font-family: 'Pixelify Sans', sans-serif;
 }
 
@@ -30,12 +31,34 @@ body {
     100% { transform: rotate(360deg); }
 }
 
-.score {
+.heading {
     display: flex;
     justify-content: space-around;
-    margin: 5vh auto;
+    margin: 2vh auto;
     font-size: 20px;
     text-align: center;
+    align-items: center;
+}
+
+.difficulty-settings {
+    display: flex;
+    justify-content: space-around;
+    margin: 2vh auto;
+    font-size: 20px;
+    text-align: center;
+    background-color: gainsboro;
+    opacity: .9;
+    padding: 2vh;
+    border: .2rem solid rgb(41, 2, 41);
+    border-radius: 1.5rem;
+
+    width: fit-content;
+    height: fit-content;
+    gap: 2vw;
+}
+
+.active {
+    border-color: red;
 }
 
 .current-score, 
@@ -43,15 +66,16 @@ body {
     background-color: gainsboro;
     opacity: .9;
     padding: 2vh;
-    border: .2rem solid rgb(26, 1, 26);
-    border-radius: 1.5rem
+    border: .2rem solid rgb(41, 2, 41);
+    border-radius: 1.5rem;
+    height: fit-content;
 }
 
 .pokemon-cards {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: 40vw;
+    width: 90%;
     margin: 0 auto;
     gap: 2vw;
 }
@@ -64,13 +88,21 @@ body {
     border-radius: 1.5rem
 }
 
+.card:hover {
+    /* box-shadow: 0 0 11px rgba(33, 33, 33, .2); */
+    box-shadow: black 0px 3px 8px;
+}
+
 .reset-button {
     margin: 5vh auto;
     display: block;
-    font-size: 20px;
     padding: 1vh;
     border-radius: 1rem;
+}
+
+button {
     font-family: 'Pixelify Sans', sans-serif;
+    font-size: 20px;
 }
 
 @media (max-width: 800px) {
