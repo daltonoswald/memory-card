@@ -19,6 +19,7 @@ function App() {
     }
 
     function handleDifficultyChange(e) {
+        setData([]);
         const newDifficulty = e.target.textContent;
         setDifficulty(newDifficulty);
         newGame();

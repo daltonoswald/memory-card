@@ -106,6 +106,10 @@ button {
 }
 
 @media (max-width: 800px) {
+    .heading {
+        flex-direction: column;
+    }
+    
     .pokemon-cards {
         width: 100%;
     }
