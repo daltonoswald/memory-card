@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import FetchPokemon from './FetchPokemon';
 import Difficulty from './Difficulty'
+import Loading from './Loading';
 
 function App() {
     const [clicked, setClicked] = useState([]);
@@ -19,7 +20,6 @@ function App() {
     }
 
     function handleDifficultyChange(e) {
-        setData([]);
         const newDifficulty = e.target.textContent;
         setDifficulty(newDifficulty);
         newGame();
@@ -30,7 +30,7 @@ function App() {
         if (new Set(clicked).size !== clicked.length) {
             setIsGameOver(true)
             newGame();
-            // Lines 23-31 are temp solutions to fixing scoring
+            // Lines below are temp solutions to fixing scoring
             // setScore((prevScore) => {
             //     const newScore = prevScore -1
             //     checkHighScore(newScore);
@@ -82,7 +82,6 @@ function App() {
         setClicked([...clicked, e.target.id])
         console.log(clicked);
         handleScore();
-        console.log(`High score is`, highScore);
       }
 
     // if (isGameOver === true) {

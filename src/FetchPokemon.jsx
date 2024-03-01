@@ -38,37 +38,6 @@ function FetchPokemon({ data, setData, handleClick, difficulty}) {
 
     }, [url, setData, pokemonCount])
 
-
-    // useEffect(() => {
-    //   const fetchData = async () => {
-    //     try {
-    //         const pokeList = [];
-    //         for (let i = 1; i <= 20; i++) {
-    //         const response = await fetch(`${url}${i}`)
-    //         if (!response.ok) {
-    //           throw new Error(`Failed to fetch ${response.status}`)
-    //         }
-    //         const result = await response.json()
-    //         pokeList.push(result);
-    //     }
-    //     for (let i = 20; i <= 40; i++) {
-    //       const response = await fetch(`${url}${i}`)
-    //       if (!response.ok) {
-    //         throw new Error(`Failed to fetch ${response.status}`)
-    //       }
-    //       const result = await response.json()
-    //       pokeList.push(result);
-    //   }
-    //       setData(pokeList)
-    //       console.log(pokeList)
-    //     } catch (error) {
-    //       setError(error.message)
-    //     }
-    //   }
-    //   fetchData()
-
-    // }, [url, setData])
-
     if (error) return <p>Error: {error}</p>
     if (!data) return <Loading />
     
@@ -76,9 +45,8 @@ function FetchPokemon({ data, setData, handleClick, difficulty}) {
         <div className="pokemon-cards">
           {data.map(data => 
           <>
-            <div id={data.name} onClick={handleClick} className="card">
+            <div key={data.name} id={data.name} onClick={handleClick} className="card">
                 <img id={data.name} src={data.sprites.front_default} />
-                {/* <div id={data.name}>{data.name}</div> */}
             </div>
         </>
           )
