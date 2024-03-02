@@ -5,6 +5,7 @@ import Loading from './Loading';
 
 function FetchPokemon({ data, setData, handleClick, difficulty}) {
     const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
     const url = `https://pokeapi.co/api/v2/pokemon/`
 
     let pokemonCount = 20;
@@ -19,6 +20,7 @@ function FetchPokemon({ data, setData, handleClick, difficulty}) {
     useEffect(() => {
       const fetchData = async () => {
         try {
+          setIsLoading(true)
             const pokeList = [];
             for (let i = 1; i <= pokemonCount; i++) {
             const response = await fetch(`${url}${i}`)
@@ -29,6 +31,7 @@ function FetchPokemon({ data, setData, handleClick, difficulty}) {
             pokeList.push(result);
         }
           setData(pokeList)
+          setIsLoading(false);
           console.log(pokeList)
         } catch (error) {
           setError(error.message)
@@ -36,10 +39,11 @@ function FetchPokemon({ data, setData, handleClick, difficulty}) {
       }
       fetchData()
 
-    }, [url, setData, pokemonCount])
+    }, [url, setData, pokemonCount, difficulty])
 
     if (error) return <p>Error: {error}</p>
     if (!data) return <Loading />
+    if (isLoading) return <Loading />
     
   return (
         <div className="pokemon-cards">

@@ -25,40 +25,11 @@ function App() {
         newGame();
     }
 
-    useEffect(() => {
-        
-        if (new Set(clicked).size !== clicked.length) {
-            setIsGameOver(true)
-            newGame();
-            // Lines below are temp solutions to fixing scoring
-            // setScore((prevScore) => {
-            //     const newScore = prevScore -1
-            //     checkHighScore(newScore);
-            //     return newScore
-            // })
-            // setHighScore((prevScore) => {
-            //     const newHighScore = prevScore -1;
-            //     return newHighScore
-            // })
-          console.log('game over')
-      }
-    }, [clicked])
-    
-
-    
-    function handleScore() {
-        if (!isGameOver) {
-            setScore((prevScore) => {
-                shuffleData();
-                const newScore = prevScore + 1
-                checkHighScore(newScore);
-                if (clicked.length === 20) {
-                    setClicked([]);
-                }
-                return newScore
-            })
-        }
+    function handleGameOver() {
+        setIsGameOver(true);
+        newGame();
     }
+
 
     function checkHighScore(newScore) {
         if (newScore > highScore) {
@@ -81,20 +52,23 @@ function App() {
     function handleClick(e) {
         setClicked([...clicked, e.target.id])
         console.log(clicked);
-        handleScore();
+        if (clicked.includes(e.target.id)) {
+            handleGameOver();
+            setClicked([]);
+            setScore((prevScore) => {
+                const newScore = prevScore;
+                checkHighScore(newScore);
+                return newScore
+            })
+        } else {
+            setScore((prevScore) => {
+                shuffleData();
+                const newScore = prevScore + 1;
+                checkHighScore(newScore);
+                return newScore
+            })
+        }
       }
-
-    // if (isGameOver === true) {
-    //     return (
-    //         <>
-    //             <div>Game Over!</div>
-    //             <div className="score">Your score is {score}.</div>
-    //             <div className="high-score">Your high score is {highScore}</div>
-    //             <button className="reset-button" onClick={newGame}>Reset</button>
-    //             <FetchPokemon data={data} setData={setData} clicked={clicked} setClicked={setClicked} handleClick={handleClick} shuffleData={shuffleData}/>
-    //         </>
-    //     )
-    // }
 
 
     return (
@@ -104,7 +78,14 @@ function App() {
                     <Difficulty difficulty={difficulty} handleDifficultyChange={handleDifficultyChange} />
                     <div className="high-score">Your high score is {highScore}</div>
                 </div>
-            <FetchPokemon data={data} setData={setData} clicked={clicked} setClicked={setClicked} handleClick={handleClick} shuffleData={shuffleData} difficulty={difficulty}/>
+            <FetchPokemon   data={data} 
+                            setData={setData}
+                            clicked={clicked} 
+                            setClicked={setClicked} 
+                            handleClick={handleClick} 
+                            shuffleData={shuffleData} 
+                            difficulty={difficulty}
+                            />
             <button className="reset-button" onClick={newGame}>Reset</button>
         </>
     )
