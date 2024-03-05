@@ -50,7 +50,7 @@ function FetchPokemon({ data, setData, handleClick, difficulty}) {
           {data.map(data => 
           <>
             <div key={data.name} id={data.name} onClick={handleClick} className="card">
-                <img id={data.name} src={data.sprites.front_default} />
+                <img id={data.name} src={data.sprites.front_default} alt={data.name} />
             </div>
         </>
           )

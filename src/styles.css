@@ -8,7 +8,7 @@ body {
     background-size: cover;
     background-attachment: fixed;
     font-family: 'Pixelify Sans', sans-serif;
-}
+    }
 
 .loading {
     /* background-image: url(https://cdn.dribbble.com/users/985548/screenshots/3419640/media/f0f2c122dabd324600b70de1d1108cdf.gif); */
@@ -85,7 +85,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     border: .2rem solid rgb(26, 1, 26);
-    border-radius: 1.5rem
+    border-radius: 1.5rem;
 }
 
 .card:hover {
