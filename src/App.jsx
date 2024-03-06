@@ -1,19 +1,26 @@
 import { useState, useEffect } from 'react';
 import FetchPokemon from './FetchPokemon';
 import Difficulty from './Difficulty'
+import GameSettings from './GameSettings';
 import Loading from './Loading';
 
 function App() {
     const [clicked, setClicked] = useState([]);
     const [data, setData] = useState(null);
     const [isGameOver, setIsGameOver] = useState(false);
+    //Work on isGameWin
+    const [isGameWin, setIsGameWin] = useState(false);
+    const [disabled, setDisabled] = useState(false);
+    const [message, setMessage] = useState('Click each Pokemon once without repeating!');
     const [score, setScore] = useState(0);
     const [highScore, setHighScore] = useState(0);
     const [difficulty, setDifficulty] = useState('');
     const [activeDifficulty, setActiveDifficulty] = useState(false);
 
     function newGame() {
+        setMessage('Click each Pokemon once without repeating!')
         setIsGameOver(false);
+        setDisabled(false);
         setScore(0);
         setClicked([]);
         shuffleData();
@@ -27,7 +34,20 @@ function App() {
 
     function handleGameOver() {
         setIsGameOver(true);
-        newGame();
+        setMessage('Game over! Please reset or try a different difficulty.')
+        setDisabled(true);
+    }
+
+    function handleGameWin() {
+        let cardCount = 4;
+        if (score === cardCount) {
+        setIsGameOver(true);
+        setMessage('You win! Play again or try a different difficulty.');
+        setDisabled(true)
+        }
+        else {
+            return
+        }
     }
 
 
@@ -50,6 +70,7 @@ function App() {
     }
 
     function handleClick(e) {
+        if (!disabled) {
         setClicked([...clicked, e.target.id])
         console.log(clicked);
         if (clicked.includes(e.target.id)) {
@@ -61,6 +82,7 @@ function App() {
                 return newScore
             })
         } else {
+            // handleGameWin();
             setScore((prevScore) => {
                 shuffleData();
                 const newScore = prevScore + 1;
@@ -68,25 +90,32 @@ function App() {
                 return newScore
             })
         }
+      } else {
+        return
       }
+    }
 
 
     return (
         <>
                 <div className="heading">
-                    <div className="current-score">Your score is {score}</div>
-                    <Difficulty difficulty={difficulty} handleDifficultyChange={handleDifficultyChange} />
-                    <div className="high-score">Your high score is {highScore}</div>
+                    <div className="scores">
+                        <div className="current-score">Your score is {score}</div>
+                        <div className="high-score">Your high score is {highScore}</div>
+                    </div>
+                    <GameSettings difficulty={difficulty} handleDifficultyChange={handleDifficultyChange} newGame={newGame} />
+                    <div className="message">{message}</div>
                 </div>
             <FetchPokemon   data={data} 
                             setData={setData}
+                            disabled={disabled}
+                            setDisabled={setDisabled}
                             clicked={clicked} 
                             setClicked={setClicked} 
                             handleClick={handleClick} 
                             shuffleData={shuffleData} 
                             difficulty={difficulty}
                             />
-            <button className="reset-button" onClick={newGame}>Reset</button>
         </>
     )
 }

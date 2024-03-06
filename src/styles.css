@@ -43,32 +43,56 @@ body {
 .difficulty-settings {
     display: flex;
     justify-content: space-around;
-    margin: 2vh auto;
+    margin-bottom: 2vh;
     font-size: 20px;
     text-align: center;
-    background-color: gainsboro;
-    opacity: .9;
-    padding: 2vh;
-    border: .2rem solid rgb(41, 2, 41);
-    border-radius: 1.5rem;
-
     width: fit-content;
     height: fit-content;
     gap: 2vw;
+}
+
+.game-settings {
+    display: flex;
+    flex-direction: column;
+    border: 0.2rem solid rgb(41, 2, 41);
+    border-radius: 1.5rem;
+    background-color: gainsboro;
+    opacity: .9;
+    padding: 2vh;
+}
+
+.reset-button,
+.difficulty-button {
+    margin: 5vh auto;
+    display: block;
+    padding: 1vh;
+    margin: 0 auto;
+    border-radius: 1rem;
 }
 
 .active {
     border-color: red;
 }
 
-.current-score, 
-.high-score {
+.scores {
     background-color: gainsboro;
     opacity: .9;
     padding: 2vh;
     border: .2rem solid rgb(41, 2, 41);
     border-radius: 1.5rem;
     height: fit-content;
+}
+
+/* .current-score, 
+.high-score, */
+.message {
+    background-color: gainsboro;
+    opacity: .9;
+    padding: 2vh;
+    border: .2rem solid rgb(41, 2, 41);
+    border-radius: 1.5rem;
+    height: fit-content;
+    width: 20vw;
 }
 
 .pokemon-cards {
@@ -91,13 +115,6 @@ body {
 .card:hover {
     /* box-shadow: 0 0 11px rgba(33, 33, 33, .2); */
     box-shadow: black 0px 3px 8px;
-}
-
-.reset-button {
-    margin: 5vh auto;
-    display: block;
-    padding: 1vh;
-    border-radius: 1rem;
 }
 
 button {

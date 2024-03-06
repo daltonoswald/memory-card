@@ -1,4 +1,4 @@
-function Difficulty({difficulty, handleDifficultyChange}) {
+function Difficulty({difficulty, handleDifficultyChange }) {
     return (
         <>
         <div className='difficulty-settings'>
