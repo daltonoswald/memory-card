@@ -8,21 +8,21 @@ function FetchPokemon({ data, setData, handleClick, difficulty, disabled }) {
     const [isLoading, setIsLoading] = useState(true);
     const url = `https://pokeapi.co/api/v2/pokemon/`
 
-    let pokemonCount = 20;
-    if (difficulty === 'Easy') {
-        pokemonCount = 20
-    } else if (difficulty === 'Medium') {
-        pokemonCount = 60
-    } else if (difficulty === 'Hard') {
-        pokemonCount = 151
-    }
+    // let pokemonCount = 20;
+    // if (difficulty === 'Easy') {
+    //     pokemonCount = 20
+    // } else if (difficulty === 'Medium') {
+    //     pokemonCount = 60
+    // } else if (difficulty === 'Hard') {
+    //     pokemonCount = 151
+    // }
 
     useEffect(() => {
       const fetchData = async () => {
         try {
           setIsLoading(true)
             const pokeList = [];
-            for (let i = 1; i <= pokemonCount; i++) {
+            for (let i = 1; i <= difficulty; i++) {
             const response = await fetch(`${url}${i}`)
             if (!response.ok) {
               throw new Error(`Failed to fetch ${response.status}`)
@@ -39,7 +39,7 @@ function FetchPokemon({ data, setData, handleClick, difficulty, disabled }) {
       }
       fetchData()
 
-    }, [url, setData, pokemonCount, difficulty])
+    }, [url, setData, difficulty])
 
     if (error) return <p>Error: {error}</p>
     if (!data) return <Loading />

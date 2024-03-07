@@ -8,13 +8,11 @@ function App() {
     const [clicked, setClicked] = useState([]);
     const [data, setData] = useState(null);
     const [isGameOver, setIsGameOver] = useState(false);
-    //Work on isGameWin
-    const [isGameWin, setIsGameWin] = useState(false);
     const [disabled, setDisabled] = useState(false);
     const [message, setMessage] = useState('Click each Pokemon once without repeating!');
     const [score, setScore] = useState(0);
     const [highScore, setHighScore] = useState(0);
-    const [difficulty, setDifficulty] = useState('');
+    const [difficulty, setDifficulty] = useState(20);
     const [activeDifficulty, setActiveDifficulty] = useState(false);
 
     function newGame() {
@@ -27,7 +25,9 @@ function App() {
     }
 
     function handleDifficultyChange(e) {
-        const newDifficulty = e.target.textContent;
+        // const newDifficulty = e.target.textContent;
+        const newDifficulty = e.target.id;
+        console.log(e.target.id);
         setDifficulty(newDifficulty);
         newGame();
     }
@@ -39,15 +39,9 @@ function App() {
     }
 
     function handleGameWin() {
-        let cardCount = 4;
-        if (score === cardCount) {
         setIsGameOver(true);
         setMessage('You win! Play again or try a different difficulty.');
         setDisabled(true)
-        }
-        else {
-            return
-        }
     }
 
 
@@ -82,11 +76,13 @@ function App() {
                 return newScore
             })
         } else {
-            // handleGameWin();
             setScore((prevScore) => {
                 shuffleData();
                 const newScore = prevScore + 1;
                 checkHighScore(newScore);
+                if (newScore === data.length) {
+                    handleGameWin();
+                }
                 return newScore
             })
         }
