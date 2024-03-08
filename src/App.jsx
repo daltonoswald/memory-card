@@ -99,7 +99,7 @@ function App() {
                         <div className="current-score">Your score is {score}</div>
                         <div className="high-score">Your high score is {highScore}</div>
                     </div>
-                    <GameSettings difficulty={difficulty} handleDifficultyChange={handleDifficultyChange} newGame={newGame} />
+                    <GameSettings difficulty={difficulty} handleDifficultyChange={handleDifficultyChange} newGame={newGame} activeDifficulty={activeDifficulty} />
                     <div className="message">{message}</div>
                 </div>
             <FetchPokemon   data={data} 

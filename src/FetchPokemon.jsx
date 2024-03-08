@@ -8,15 +8,6 @@ function FetchPokemon({ data, setData, handleClick, difficulty, disabled }) {
     const [isLoading, setIsLoading] = useState(true);
     const url = `https://pokeapi.co/api/v2/pokemon/`
 
-    // let pokemonCount = 20;
-    // if (difficulty === 'Easy') {
-    //     pokemonCount = 20
-    // } else if (difficulty === 'Medium') {
-    //     pokemonCount = 60
-    // } else if (difficulty === 'Hard') {
-    //     pokemonCount = 151
-    // }
-
     useEffect(() => {
       const fetchData = async () => {
         try {

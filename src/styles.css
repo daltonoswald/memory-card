@@ -2,7 +2,7 @@
 
 body {
     width: 80vw;
-    margin: 0 auto;
+    margin: 2vh auto;
     background-image: url(/src/assets/lavender-town.jpg);
     background-repeat: no-repeat;
     background-size: cover;
