@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react'
 import Loading from './Loading';
+import Error from './Error'
 
 
 function FetchPokemon({ data, setData, handleClick, difficulty, disabled }) {
@@ -22,19 +23,21 @@ function FetchPokemon({ data, setData, handleClick, difficulty, disabled }) {
             pokeList.push(result);
         }
           setData(pokeList)
-          setIsLoading(false);
           console.log(pokeList)
         } catch (error) {
           setError(error.message)
+          setData(null);
+        } finally {
+          setIsLoading(false)
         }
       }
       fetchData()
 
     }, [url, setData, difficulty])
 
-    if (error) return <p>Error: {error}</p>
-    if (!data) return <Loading />
-    if (isLoading) return <Loading />
+    // if (error) return <p>Error: {error}</p>
+    if (error) return <Error error={error}/>
+    if (!data || isLoading) return <Loading />
     
   return (
         <div className="pokemon-cards">

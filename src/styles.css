@@ -10,14 +10,25 @@ body {
     font-family: 'Pixelify Sans', sans-serif;
     }
 
-.loading {
-    /* background-image: url(https://cdn.dribbble.com/users/985548/screenshots/3419640/media/f0f2c122dabd324600b70de1d1108cdf.gif); */
+/* .loading {
     color: aliceblue;
     background-repeat: no-repeat;
     margin: 0 auto;
     display: flex;
     justify-content: center;
     background-position: center;
+} */
+
+.error,
+.loading {
+    margin: 0 auto;
+    border: 0.2rem solid rgb(41, 2, 41);
+    border-radius: 1.5rem;
+    background-color: gainsboro;
+    opacity: .9;
+    padding: 2vh;
+    max-width: fit-content; 
+    font-size: 24px;
 }
 
 .pokeball-img {
