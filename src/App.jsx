@@ -8,15 +8,17 @@ function App() {
     const [clicked, setClicked] = useState([]);
     const [data, setData] = useState(null);
     const [isGameOver, setIsGameOver] = useState(false);
+    const [isGameWin, setIsGameWin] = useState(false);
     const [disabled, setDisabled] = useState(false);
     const [message, setMessage] = useState('Click each Pokemon once without repeating!');
     const [score, setScore] = useState(0);
     const [highScore, setHighScore] = useState(0);
     const [difficulty, setDifficulty] = useState(20);
-    const [activeDifficulty, setActiveDifficulty] = useState(false);
+    const [active, setActive] = useState(false);
 
     function newGame() {
         setMessage('Click each Pokemon once without repeating!')
+        setIsGameWin(false);
         setIsGameOver(false);
         setDisabled(false);
         setScore(0);
@@ -29,6 +31,7 @@ function App() {
         const newDifficulty = e.target.id;
         console.log(e.target.id);
         setDifficulty(newDifficulty);
+        setActive(active => !active);
         newGame();
     }
 
@@ -39,7 +42,8 @@ function App() {
     }
 
     function handleGameWin() {
-        setIsGameOver(true);
+        // setIsGameOver(true);
+        setIsGameWin(true);
         setMessage('You win! Play again or try a different difficulty.');
         setDisabled(true)
     }
@@ -99,7 +103,7 @@ function App() {
                         <div className="current-score">Your score is {score}</div>
                         <div className="high-score">Your high score is {highScore}</div>
                     </div>
-                    <GameSettings difficulty={difficulty} handleDifficultyChange={handleDifficultyChange} newGame={newGame} activeDifficulty={activeDifficulty} />
+                    <GameSettings difficulty={difficulty} handleDifficultyChange={handleDifficultyChange} newGame={newGame} active={active} />
                     <div className="message">{message}</div>
                 </div>
             <FetchPokemon   data={data} 
@@ -111,6 +115,8 @@ function App() {
                             handleClick={handleClick} 
                             shuffleData={shuffleData} 
                             difficulty={difficulty}
+                            isGameOver={isGameOver}
+                            isGameWin={isGameWin}
                             />
         </>
     )

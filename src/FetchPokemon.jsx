@@ -4,7 +4,7 @@ import Loading from './Loading';
 import Error from './Error'
 
 
-function FetchPokemon({ data, setData, handleClick, difficulty, disabled }) {
+function FetchPokemon({ data, setData, handleClick, difficulty, disabled, isGameOver, isGameWin }) {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const url = `https://pokeapi.co/api/v2/pokemon/`
@@ -38,12 +38,15 @@ function FetchPokemon({ data, setData, handleClick, difficulty, disabled }) {
     // if (error) return <p>Error: {error}</p>
     if (error) return <Error error={error}/>
     if (!data || isLoading) return <Loading />
+
+    let checkGameOver = isGameOver ? ' gameOver': null;
+    let checkGameWin = isGameWin ? ' gameWin': null;
     
   return (
         <div className="pokemon-cards">
           {data.map(data => 
           <>
-            <div key={data.name} id={data.name} onClick={handleClick} disabled={disabled} className="card">
+            <div key={data.name} id={data.name} onClick={handleClick} disabled={disabled} className={`card ${checkGameOver} ${checkGameWin}`}>
                 <img id={data.name} src={data.sprites.front_default} alt={data.name} />
             </div>
         </>

@@ -1,4 +1,10 @@
-function Difficulty({difficulty, handleDifficultyChange }) {
+function Difficulty({difficulty, handleDifficultyChange, active }) {
+
+    // let toggleEasy = active ? ' active': null;
+    // let toggleMedium = active ? ' active': null;
+    // let toggleHard = active ? ' active': null;
+
+
     return (
         <>
         <div className='difficulty-settings'>
