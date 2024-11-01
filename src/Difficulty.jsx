@@ -1,16 +1,13 @@
-function Difficulty({difficulty, handleDifficultyChange, active }) {
+import { useEffect, useState } from "react"
 
-    // let toggleEasy = active ? ' active': null;
-    // let toggleMedium = active ? ' active': null;
-    // let toggleHard = active ? ' active': null;
-
+function Difficulty({difficulty, handleDifficultyChange }) {
 
     return (
         <>
         <div className='difficulty-settings'>
-            <button id="20" className="difficulty-button" onClick={handleDifficultyChange}>Easy</button>
-            <button id="60" className="difficulty-button" onClick={handleDifficultyChange}>Medium</button>
-            <button id="151" className="difficulty-button" onClick={handleDifficultyChange}>Hard</button>
+            <button id="20" className={"difficulty-button " + (difficulty === '20' ? 'active' : 'inactive')} onClick={handleDifficultyChange}>Easy</button>
+            <button id="60" className={"difficulty-button " + (difficulty === '60' ? 'active' : 'inactive')} onClick={handleDifficultyChange}>Medium</button>
+            <button id="151" className={"difficulty-button " + (difficulty === '151' ? 'active' : 'inactive')} onClick={handleDifficultyChange}>Hard</button>
         </div>
         </>
     )

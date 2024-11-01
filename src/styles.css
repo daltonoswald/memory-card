@@ -73,17 +73,28 @@ body {
     padding: 2vh;
 }
 
+.game-settings-bottom {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
 .reset-button,
-.difficulty-button {
-    margin: 5vh auto;
+.difficulty-button,
+.shiny-button {
     display: block;
     padding: 1vh;
     margin: 0 auto;
     border-radius: 1rem;
 }
 
+.reset-button {
+    margin: 0;
+}
+
 .active {
-    border-color: red;
+    box-shadow: inset 0px 0px 5px black;
 }
 
 .scores {

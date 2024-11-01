@@ -13,8 +13,8 @@ function App() {
     const [message, setMessage] = useState('Click each Pokemon once without repeating!');
     const [score, setScore] = useState(0);
     const [highScore, setHighScore] = useState(0);
-    const [difficulty, setDifficulty] = useState(20);
-    const [active, setActive] = useState(false);
+    const [difficulty, setDifficulty] = useState('20');
+    const [shiny, setShiny] = useState(false)
 
     function newGame() {
         setMessage('Click each Pokemon once without repeating!')
@@ -30,8 +30,14 @@ function App() {
         // const newDifficulty = e.target.textContent;
         const newDifficulty = e.target.id;
         console.log(e.target.id);
+        console.log(difficulty);
         setDifficulty(newDifficulty);
-        setActive(active => !active);
+        newGame();
+    }
+
+    function handleShinyChange(e) {
+        const shinyMode = e.target.id;
+        setShiny(!shiny);
         newGame();
     }
 
@@ -103,21 +109,29 @@ function App() {
                         <div className="current-score">Your score is {score}</div>
                         <div className="high-score">Your high score is {highScore}</div>
                     </div>
-                    <GameSettings difficulty={difficulty} handleDifficultyChange={handleDifficultyChange} newGame={newGame} active={active} />
+                    <GameSettings 
+                        difficulty={difficulty} 
+                        handleDifficultyChange={handleDifficultyChange} 
+                        shiny={shiny} 
+                        handleShinyChange={handleShinyChange} 
+                        newGame={newGame} 
+                        />
                     <div className="message">{message}</div>
                 </div>
-            <FetchPokemon   data={data} 
-                            setData={setData}
-                            disabled={disabled}
-                            setDisabled={setDisabled}
-                            clicked={clicked} 
-                            setClicked={setClicked} 
-                            handleClick={handleClick} 
-                            shuffleData={shuffleData} 
-                            difficulty={difficulty}
-                            isGameOver={isGameOver}
-                            isGameWin={isGameWin}
-                            />
+            <FetchPokemon   
+                data={data} 
+                setData={setData}
+                disabled={disabled}
+                setDisabled={setDisabled}
+                clicked={clicked} 
+                setClicked={setClicked} 
+                handleClick={handleClick} 
+                shuffleData={shuffleData} 
+                difficulty={difficulty}
+                shiny={shiny}
+                isGameOver={isGameOver}
+                isGameWin={isGameWin}
+                />
         </>
     )
 }
