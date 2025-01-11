@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
 
+html {
+    -ms-overflow-styles: none;
+    scrollbar-width: none;
+    overflow-anchor: auto;
+}
+
 body {
     width: 80vw;
     margin: 2vh auto;
@@ -8,16 +14,17 @@ body {
     background-size: cover;
     background-attachment: fixed;
     font-family: 'Pixelify Sans', sans-serif;
-    }
+}
 
-/* .loading {
-    color: aliceblue;
-    background-repeat: no-repeat;
-    margin: 0 auto;
+.loading-container {
     display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
-    background-position: center;
-} */
+    width: 90%;
+    margin: 0 auto;
+    gap: 2vw;
+}
 
 .error,
 .loading {
@@ -87,6 +94,13 @@ body {
     padding: 1vh;
     margin: 0 auto;
     border-radius: 1rem;
+}
+
+.reset-button:hover,
+.difficulty-button:hover,
+.shiny-button:hover {
+    box-shadow: inset 0px 0px 5px black;
+    cursor: pointer;
 }
 
 .reset-button {
