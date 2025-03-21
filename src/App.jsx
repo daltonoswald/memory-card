@@ -27,10 +27,7 @@ function App() {
     }
 
     function handleDifficultyChange(e) {
-        // const newDifficulty = e.target.textContent;
         const newDifficulty = e.target.id;
-        console.log(e.target.id);
-        console.log(difficulty);
         setDifficulty(newDifficulty);
         newGame();
     }
@@ -62,11 +59,15 @@ function App() {
     }
 
     function shuffleArray(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [array[i], array[j]] = [array[j], array[i]];
+        if (array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+              }
+              return array;
+        } else {
+            return
         }
-        return array;
       } 
 
     function shuffleData() {

@@ -15,25 +15,27 @@ function FetchPokemon({ data, setData, handleClick, difficulty, disabled, isGame
           setIsLoading(true)
             const pokeList = [];
             for (let i = 1; i <= difficulty; i++) {
-            const response = await fetch(`${url}${i}`)
-            if (!response.ok) {
-              throw new Error(`Failed to fetch ${response.status}`)
-            }
-            const result = await response.json()
-            pokeList.push(result);
+              const response = await fetch(`${url}${i}`)
+              if (response.ok) {
+                const result = await response.json()
+                pokeList.push(result);              
+              } else {
+                // throw new Error(`Failed to fetch ${response.status}`)
+                console.log(response)
+              }
         }
           setData(pokeList)
-          console.log(pokeList)
         } catch (error) {
           setError(error.message)
           setData(null);
+          throw new Error(`Failed to fetch ${response.status}`)
         } finally {
           setIsLoading(false)
         }
       }
       fetchData()
 
-    }, [url, setData, difficulty])
+    }, [url, difficulty])
 
     // if (error) return <p>Error: {error}</p>
     if (error) return <Error error={error}/>
@@ -47,7 +49,7 @@ function FetchPokemon({ data, setData, handleClick, difficulty, disabled, isGame
           {data.map(data => 
           <>
             <div key={data.name} 
-              id={data.name} 
+              id={data.name}
               onClick={handleClick} 
               disabled={disabled} 
               className={"card " + (checkGameOver ? 'gameOver' : '') + (checkGameWin ? 'gameWin' : '')}
