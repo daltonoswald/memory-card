@@ -21,19 +21,20 @@ function FetchPokemon({ data, setData, handleClick, difficulty, disabled, isGame
                 pokeList.push(result);              
               } else {
                 // throw new Error(`Failed to fetch ${response.status}`)
-                console.log(response)
+                // console.log(response)
+                continue
               }
-        }
-          setData(pokeList)
-        } catch (error) {
-          setError(error.message)
-          setData(null);
-          throw new Error(`Failed to fetch ${response.status}`)
-        } finally {
-          setIsLoading(false)
-        }
-      }
-      fetchData()
+            }
+              setData(pokeList)
+            } catch (error) {
+              setError(error.message)
+              setData(null);
+              throw new Error(`Failed to fetch ${response.status}`)
+            } finally {
+              setIsLoading(false)
+            }
+          }
+          fetchData()
 
     }, [url, difficulty])
 
@@ -47,7 +48,6 @@ function FetchPokemon({ data, setData, handleClick, difficulty, disabled, isGame
   return (
         <div className="pokemon-cards">
           {data.map(data => 
-          <>
             <div key={data.name} 
               id={data.name}
               onClick={handleClick} 
@@ -61,7 +61,6 @@ function FetchPokemon({ data, setData, handleClick, difficulty, disabled, isGame
                 <img id={data.name} src={data.sprites.front_default} alt={data.name} />
               )}
             </div>
-        </>
           )
           }
         </div>

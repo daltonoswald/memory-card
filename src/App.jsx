@@ -77,7 +77,6 @@ function App() {
     function handleClick(e) {
         if (!disabled) {
         setClicked([...clicked, e.target.id])
-        console.log(clicked);
         if (clicked.includes(e.target.id)) {
             handleGameOver();
             setClicked([]);
